@@ -20,8 +20,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  approvePlan: auto
+  approvePlan: ""
   path: ./base/terraform/k8s-vault-config
+  storeReadablePlan: human
   sourceRef:
     kind: GitRepository
     name: flux-system
