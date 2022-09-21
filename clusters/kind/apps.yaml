@@ -13,18 +13,15 @@ spec:
   prune: true
   validation: client
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
+apiVersion: infra.contrib.fluxcd.io/v1alpha1
+kind: Terraform
 metadata:
-  name: terraform
+  name: k8s-vault-config
   namespace: flux-system
 spec:
-  interval: 10m0s
-  dependsOn:
-    - name: apps
+  interval: 1m
+  approvePlan: auto
+  path: ./base/terraform/k8s-vault-config
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./base/terraform
-  prune: true
-  validation: client
