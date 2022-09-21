@@ -35,7 +35,7 @@ metadata:
   name: slack-webhook
   namespace: default
 stringData:
-  address: https://hooks.slack.com/services/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
+  address: https://hooks.slack.com/services/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
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
@@ -44,7 +44,7 @@ metadata:
   namespace: default
 spec:
   type: slack
-  channel: general
+  channel: demo
   secretRef:
     name: slack-webhook
 ---
