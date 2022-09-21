@@ -1,0 +1,63 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - gotk-components.yaml
+  - gotk-sync.yaml
+patches:
+  - patch: |
+      - op: add
+        path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/eventSources/items/properties/kind/enum/-
+        value: Terraform      
+    target:
+      kind: CustomResourceDefinition
+      name:  alerts.notification.toolkit.fluxcd.io
+  - patch: |
+      - op: add
+        path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/resources/items/properties/kind/enum/-
+        value: Terraform      
+    target:
+      kind: CustomResourceDefinition
+      name:  receivers.notification.toolkit.fluxcd.io
+  - patch: |
+      - op: add
+        path: /rules/-
+        value:
+          apiGroups: [ 'infra.contrib.fluxcd.io' ]
+          resources: [ '*' ]
+          verbs: [ '*' ]      
+    target:
+      kind: ClusterRole
+      name:  crd-controller-flux-system
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: slack-webhook
+  namespace: default
+stringData:
+  address: https://hooks.slack.com/services/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
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: slack
+  namespace: default
+spec:
+  type: slack
+  channel: general
+  secretRef:
+    name: slack-webhook
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: terraform-slack
+  namespace: default
+spec:
+  providerRef:
+    name: slack
+  eventSeverity: info
+  eventSources:
+    - apiVersion: infra.contrib.fluxcd.io/v1alpha1
+      kind: Terraform
+      name: '*'
