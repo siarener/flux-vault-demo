@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  approvePlan: ""
+  approvePlan: "plan-main-0653d53211"
   path: ./base/terraform/k8s-vault-config
   storeReadablePlan: human
   sourceRef:
