@@ -26,16 +26,20 @@ spec:
   path: ./wego
   prune: true
   validation: client
-# ---
-# apiVersion: infra.contrib.fluxcd.io/v1alpha1
-# kind: Terraform
-# metadata:
-#   name: k8s-vault-config
-#   namespace: flux-system
-# spec:
-#   interval: 1m
-#   approvePlan: "auto"
-#   path: ./base/terraform/k8s-vault-config
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha1
+kind: Terraform
+metadata:
+  name: k8s-vault-config
+  namespace: flux-system
+spec:
+  interval: 1m
+  approvePlan: "auto"
+  path: ./base/terraform/k8s-vault-config
+  backendConfig:
+    disable: true
+  cliConfigSecretRef:
+    name: tfe-cli-config
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
