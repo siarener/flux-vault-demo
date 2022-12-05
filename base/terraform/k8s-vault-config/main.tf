@@ -1,15 +1,3 @@
-terraform {
-  required_version = ">= 1.1.0"
-  cloud {
-    hostname = "app.terraform.io"
-    organization = "terraform-controller-demo"
-
-    workspaces {
-      name = "example2"
-    }
-  }
-}
-
 provider "vault" {
   address = var.vault_address
   token   = var.vault_token
