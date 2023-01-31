@@ -30,6 +30,8 @@ spec:
     crds: CreateReplace
   interval: 50m
   values:
+    global:
+      capiEnabled: false
     enablePipelines: true
     enableTerraformUI: true
     # -- Configure TLS settings if needed
