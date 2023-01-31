@@ -4,7 +4,7 @@ terraform {
     organization = "terraform-controller-demo"
 
     workspaces {
-      name = "asdf"
+      name = "asdfg"
     }
   }
 }
