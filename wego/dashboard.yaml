@@ -10,7 +10,7 @@ spec:
     name: weave-gitops-enterprise-credentials
   url: https://charts.dev.wkp.weave.works/releases/charts-v3
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: weave-gitops-enterprise
@@ -69,7 +69,7 @@ spec:
   interval: 1h
   url: https://charts.jetstack.io
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: cert-manager
