@@ -27,7 +27,7 @@ spec:
   prune: true
   validation: client
 ---
-apiVersion: infra.contrib.fluxcd.io/v1alpha2
+apiVersion: infra.contrib.fluxcd.io/v1alpha1
 kind: Terraform
 metadata:
   name: k8s-vault-config
